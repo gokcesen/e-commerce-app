@@ -1,7 +1,7 @@
-function Product({ title, image, description, price }) {
+function ProductCard({ title, image, description, price, onAddToCart }) {
     return(
         <>
-            <div className="card bg-white shadow-md rounded-lg overflow-hidden w-72">
+            <div className="card border-1 box-shadow-5 bg-white shadow-md rounded-lg overflow-hidden w-72">
                 <img
                     src={image}
                     alt={title}
@@ -17,7 +17,7 @@ function Product({ title, image, description, price }) {
                    <span className="text-lg font-bold text-green-600 block mb-3">
                         ${price}
                     </span>
-                    <button className="bg-blue-500 text-white w-full py-2 rounded hover:bg-blue-600 transition duration-200">
+                    <button onClick={onAddToCart} className="bg-blue-500 text-white w-full py-2 rounded hover:bg-blue-600 transition duration-200">
                         Add to Cart
                     </button>
                 </div>
@@ -26,6 +26,6 @@ function Product({ title, image, description, price }) {
   );
 };
 
-export default Product;
+export default ProductCard;
 
 
