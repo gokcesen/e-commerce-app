@@ -3,7 +3,7 @@ import { FaShoppingCart } from "react-icons/fa";
 
 
 
-function Header({ cartCount = 0, onSearch }){
+function Header({ cartCount = 0, onSearch, cartItems }){
     const [search, setSearch] = useState('');
     const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -36,18 +36,27 @@ function Header({ cartCount = 0, onSearch }){
             </div>
         </nav>
 
-        <div
-            className={`fixed top-0 right-0 h-full w-80 bg-white shadow-lg transform transition-transform duration-300 ${
-            isCartOpen ? "translate-x-0" : "translate-x-full"
-            }`}
-        >
-            <div className="p-4">
-            <h2 className="text-xl font-bold mb-4">Cart Panel</h2>
-            <button onClick={toggleCart} className="mt-4 px-3 py-1 bg-blue-600 text-white rounded">
-                Close
-            </button>
+        <div className={`fixed top-16 right-0 h-full w-80 bg-white shadow-lg p-6 transform transition-transform duration-300 ${isCartOpen ? "translate-x-0" : "translate-x-full"}`}>
+        <h2 className="text-xl text-black border-b font-bold mb-6">Your Cart</h2>
+        {cartItems.length === 0 ? (
+            <p className="text-black">Your cart is empty</p>
+        ) : (
+            cartItems.map(item => (
+            <div key={item.id} className="flex items-center mb-5 border-b pb-3">
+                <img src={item.images[0]} alt={item.title} className="w-20 h-20 object-cover rounded mr-4" />
+                <div className="flex flex-col">
+                <p className="font-semibold text-gray-800">{item.title}</p>
+                <p className="text-gray-600">Quantity: <span className="font-bold">{item.quantity}</span></p>
+                <p className="text-green-600 font-semibold">${item.price * item.quantity}</p>
+                </div>
             </div>
+            ))
+        )}
+        <button onClick={toggleCart} className="mt-4 bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700 transition">
+            Close
+        </button>
         </div>
+
         
         <div className="h-20"></div>
 
@@ -57,6 +66,7 @@ function Header({ cartCount = 0, onSearch }){
 
 export default Header;
 
-     
+
+
 
 
