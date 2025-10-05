@@ -2,7 +2,20 @@ import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
 function ProductCard({ product }) {
-    const { addToCart } = useContext(CartContext);
+    const { cart, addToCart, updateQuantity } = useContext(CartContext);
+
+    const cartItem = cart.find(item => item.id === product.id);
+    const count = cartItem ? cartItem.quantity : 0;
+    
+
+    const increment = () => {
+        updateQuantity(product.id, count + 1);
+    };
+
+    const decrement = () => {
+       updateQuantity(product.id, count - 1);
+    };
+
     return(
         <>
             <div className="card border-1 box-shadow-5 bg-white shadow-md rounded-lg overflow-hidden w-72">
@@ -21,15 +34,31 @@ function ProductCard({ product }) {
                    <span className="text-lg font-bold text-green-600 block mb-3">
                         ${product.price}
                     </span>
-                    <button onClick={() => addToCart(product)} className="bg-blue-500 text-white w-full py-2 rounded hover:bg-blue-600 transition duration-200">
-                        Add to Cart
-                    </button>
-                </div>
+                    <div className="w-full flex justify-center">
+                        {count === 0 ? (
+                            <button onClick={() => addToCart(product)} className="bg-blue-500 text-white w-full py-2 rounded hover:bg-blue-600 transition duration-200">
+                                Add to Cart
+                            </button>
+                        ) : (
+                            <div className="flex items-center gap-3">
+                                <button 
+                                    onClick={decrement}
+                                    className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 text-lg flex items-center justify-center"
+                                >-
+                                </button>
+                                <span className="text-black font-medium text-lg">{count}</span>
+                                <button 
+                                    onClick={increment}
+                                    className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 text-lg flex items-center justify-center"
+                                >+
+                                </button>
+                            </div>
+                            )}
+                    </div>
+                </div>    
             </div>
         </>
   );
 };
 
 export default ProductCard;
-
-
