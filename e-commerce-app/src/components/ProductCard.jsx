@@ -1,4 +1,8 @@
-function ProductCard({ product, onAddToCart }) {
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
+
+function ProductCard({ product }) {
+    const { addToCart } = useContext(CartContext);
     return(
         <>
             <div className="card border-1 box-shadow-5 bg-white shadow-md rounded-lg overflow-hidden w-72">
@@ -17,7 +21,7 @@ function ProductCard({ product, onAddToCart }) {
                    <span className="text-lg font-bold text-green-600 block mb-3">
                         ${product.price}
                     </span>
-                    <button onClick={onAddToCart} className="bg-blue-500 text-white w-full py-2 rounded hover:bg-blue-600 transition duration-200">
+                    <button onClick={() => addToCart(product)} className="bg-blue-500 text-white w-full py-2 rounded hover:bg-blue-600 transition duration-200">
                         Add to Cart
                     </button>
                 </div>
