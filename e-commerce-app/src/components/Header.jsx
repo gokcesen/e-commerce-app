@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { FaShoppingCart } from "react-icons/fa";
+import { CartContext } from "../context/CartContext";
 
 
 
 function Header({ cartCount = 0, onSearch, cartItems }){
     const [search, setSearch] = useState('');
     const [isCartOpen, setIsCartOpen] = useState(false);
+    const { removeFromCart } = useContext(CartContext);
+
 
     const handleChange = (event) =>
     {
@@ -49,6 +52,11 @@ function Header({ cartCount = 0, onSearch, cartItems }){
                 <p className="text-gray-600">Quantity: <span className="font-bold">{item.quantity}</span></p>
                 <p className="text-green-600 font-semibold">${item.price * item.quantity}</p>
                 </div>
+                <button
+                    onClick={() => removeFromCart(item.id)}
+                    className="ml-4 px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+                >x
+                </button>
             </div>
             ))
         )}
