@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import QuantityCounter from "./QuantityCounter";
 
 function ProductCard({ product }) {
     const { cart, addToCart, updateQuantity } = useContext(CartContext);
@@ -35,25 +36,20 @@ function ProductCard({ product }) {
                         ${product.price}
                     </span>
                     <div className="w-full flex justify-center">
-                        {count === 0 ? (
-                            <button onClick={() => addToCart(product)} className="bg-blue-500 text-white w-full py-2 rounded hover:bg-blue-600 transition duration-200">
-                                Add to Cart
-                            </button>
+                      {count === 0 ? (
+                        <button
+                            onClick={() => addToCart(product)}
+                            className="bg-blue-500 text-white w-full py-2 rounded hover:bg-blue-600 transition duration-200"
+                        >
+                            Add to Cart
+                        </button>
                         ) : (
-                            <div className="flex items-center gap-3">
-                                <button 
-                                    onClick={decrement}
-                                    className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 text-lg flex items-center justify-center"
-                                >-
-                                </button>
-                                <span className="text-black font-medium text-lg">{count}</span>
-                                <button 
-                                    onClick={increment}
-                                    className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 text-lg flex items-center justify-center"
-                                >+
-                                </button>
-                            </div>
-                            )}
+                        <QuantityCounter
+                            quantity={count}
+                            onIncrement={increment}
+                            onDecrement={decrement}
+                        />
+                        )}
                     </div>
                 </div>    
             </div>
