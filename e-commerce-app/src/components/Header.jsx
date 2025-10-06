@@ -2,11 +2,13 @@ import { useState, useContext } from "react";
 import { FaShoppingCart, FaTrash } from "react-icons/fa";
 import { CartContext } from "../context/CartContext";
 import CartPanel from "./CartPanel";
+import { useNavigate } from "react-router-dom";
 
 function Header({ cartCount = 0, onSearch }){
     const [search, setSearch] = useState('');
     const [isCartOpen, setIsCartOpen] = useState(false);
     const { cart } = useContext(CartContext);
+    const navigate = useNavigate();
    
     const handleChange = (event) =>
     {
@@ -21,7 +23,7 @@ function Header({ cartCount = 0, onSearch }){
     <>
         <nav className="fixed top-0 left-0 w-full bg-slate-900 text-white px-8 py-5 rounded-md z-50">
             <div className="max-w-7xl mx-auto flex items-center justify-between">
-                <h1 className="text-2xl font-bold">Quick Store</h1>
+                <h1 onClick={() => navigate("/")} className="text-2xl font-bold">Quick Store</h1>
                 <input
                     type="text"
                     value={search}
