@@ -3,15 +3,11 @@ import { FaShoppingCart, FaTrash } from "react-icons/fa";
 import { CartContext } from "../context/CartContext";
 import CartPanel from "./CartPanel";
 
-
-
-
 function Header({ cartCount = 0, onSearch }){
     const [search, setSearch] = useState('');
     const [isCartOpen, setIsCartOpen] = useState(false);
     const { cart } = useContext(CartContext);
-
-
+   
     const handleChange = (event) =>
     {
         const value = event.target.value;
@@ -21,7 +17,6 @@ function Header({ cartCount = 0, onSearch }){
 
     const toggleCart = () => setIsCartOpen(prev => !prev);
 
-      
     return(
     <>
         <nav className="fixed top-0 left-0 w-full bg-slate-900 text-white px-8 py-5 rounded-md z-50">
@@ -41,11 +36,8 @@ function Header({ cartCount = 0, onSearch }){
             </div>
         </nav>
         
-        {isCartOpen && <CartPanel cartItems={cart} onClose={toggleCart} />}
+        {isCartOpen && <CartPanel cartItems={cart} onClose={() => setIsCartOpen(false)}/>}
 
-     
-
-        
         <div className="h-20"></div>
 
     </>
