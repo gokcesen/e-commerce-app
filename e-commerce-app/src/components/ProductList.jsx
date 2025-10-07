@@ -1,10 +1,12 @@
 import ProductCard from "./ProductCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 function ProductList({ searchProduct }) {
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -19,6 +21,15 @@ function ProductList({ searchProduct }) {
         fetchProducts()
     }, [])
 
+    const handleClick = (product) => {
+        navigate({
+            pathname: `/product/${product.id}`,
+            state: { product },
+        });     
+    };
+
+
+
     const filteredProducts = products.filter((product) =>
         product.title.toLowerCase().includes(searchProduct.toLowerCase())
     );
@@ -32,6 +43,7 @@ function ProductList({ searchProduct }) {
                 <ProductCard
                     key={product.id}
                     product={product}
+                    onClick={() => handleClick(product)}
                 />
                 ))
             ) : (

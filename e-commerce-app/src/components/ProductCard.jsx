@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import QuantityCounter from "./QuantityCounter";
 
-function ProductCard({ product }) {
+function ProductCard({ product, onClick }) {
     const { cart, addToCart, updateQuantity } = useContext(CartContext);
 
     const cartItem = cart.find(item => item.id === product.id);
@@ -19,7 +19,7 @@ function ProductCard({ product }) {
 
     return(
         <>
-            <div className="card border-1 box-shadow-5 bg-white shadow-md rounded-lg overflow-hidden w-72">
+            <div onClick={onClick} className="card border-1 box-shadow-5 bg-white shadow-md rounded-lg overflow-hidden w-72">
                 <img
                     src={product.images[0]}
                     alt={product.title}
