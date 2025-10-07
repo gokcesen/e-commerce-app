@@ -14,8 +14,8 @@ function ProductList({ searchProduct }) {
         const fetchProducts = async () => {
         try {
             const response = await axios.get("https://dummyjson.com/products");
+            if (!response.ok) throw new Error("Failed to load products");
             setProducts(response.data.products)
-
         } catch(error) {
             console.error(error);
         } finally {

@@ -20,7 +20,7 @@ function ProductCard({ product, onClick }) {
     };
 
     const handleAddToCart = (e) => {
-        e.stopPropagation(); // navigate'i engelle
+        e.stopPropagation(); 
         addToCart(product);
       };
 
