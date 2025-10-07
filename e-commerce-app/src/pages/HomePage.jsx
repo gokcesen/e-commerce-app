@@ -8,6 +8,7 @@ import { CartContext } from "../context/CartContext";
 
 function HomePage() {
     const [searchProduct, setSearchProduct] = useState("")
+    const [selectedCategory, setSelectedCategory] = useState("");
     const { cart } = useContext(CartContext); 
 
    
@@ -17,8 +18,10 @@ function HomePage() {
                 cartCount={cart.reduce((total, item) => total + item.quantity, 0)}
                 cartItems={cart}
                 onSearch={setSearchProduct}
+                onCategorySelect={setSelectedCategory}
             />
-            <ProductList searchProduct={searchProduct}  />
+
+            <ProductList searchProduct={searchProduct} selectedCategory={selectedCategory} />
         </>
     )
 }

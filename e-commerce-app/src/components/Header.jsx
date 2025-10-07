@@ -4,26 +4,41 @@ import { CartContext } from "../context/CartContext";
 import CartPanel from "./CartPanel";
 import { useNavigate } from "react-router-dom";
 
-function Header({ cartCount = 0, onSearch }){
-    const [search, setSearch] = useState('');
+function Header({ cartCount = 0, onSearch, onCategorySelect }){
+    const [search, setSearch] = useState("");
+    const [selectedCategory, setSelectedCategory] = useState("");
     const [isCartOpen, setIsCartOpen] = useState(false);
     const { cart } = useContext(CartContext);
     const navigate = useNavigate();
    
     const handleChange = (event) =>
     {
-        const value = event.target.value;
+        const value = event.target.value.toLowerCase();
         setSearch(value);
         if (onSearch) onSearch(value)
     }
 
     const toggleCart = () => setIsCartOpen(prev => !prev);
 
+    function handleFilterChange(event) {
+        const value = event.target.value;
+        setSelectedCategory(value);
+        if (onCategorySelect) onCategorySelect(value);
+
+    }
+
     return(
     <>
         <nav className="fixed top-0 left-0 w-full bg-slate-900 text-white px-8 py-5 rounded-md z-50">
             <div className="max-w-7xl mx-auto flex items-center justify-between">
                 <h1 onClick={() => navigate("/")} className="text-2xl font-bold">Quick Store</h1>
+                <select value={selectedCategory} onChange={handleFilterChange}>
+                    <option value="all">All Categories</option>
+                    <option value="beauty">Beauty</option>
+                    <option value="fragrances">Fragrances</option>
+                    <option value="furniture">Furniture</option>
+                    <option value="groceries">Groceries</option>
+                </select>
                 <input
                     type="text"
                     value={search}
