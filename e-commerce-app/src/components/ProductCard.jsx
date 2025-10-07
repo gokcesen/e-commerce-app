@@ -9,13 +9,20 @@ function ProductCard({ product, onClick }) {
     const count = cartItem ? cartItem.quantity : 0;
     
 
-    const increment = () => {
+    const increment = (e) => {
+        e.stopPropagation();
         updateQuantity(product.id, count + 1);
     };
 
-    const decrement = () => {
-       updateQuantity(product.id, count - 1);
+    const decrement = (e) => {
+        e.stopPropagation();
+        updateQuantity(product.id, count - 1);
     };
+
+    const handleAddToCart = (e) => {
+        e.stopPropagation(); // navigate'i engelle
+        addToCart(product);
+      };
 
     return(
         <>
@@ -38,7 +45,7 @@ function ProductCard({ product, onClick }) {
                     <div className="w-full flex justify-center">
                       {count === 0 ? (
                         <button
-                            onClick={() => addToCart(product)}
+                            onClick={handleAddToCart}
                             className="bg-blue-500 text-white w-full py-2 rounded hover:bg-blue-600 transition duration-200"
                         >
                             Add to Cart

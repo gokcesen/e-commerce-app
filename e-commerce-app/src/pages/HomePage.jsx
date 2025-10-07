@@ -8,7 +8,7 @@ import { CartContext } from "../context/CartContext";
 
 function HomePage() {
     const [searchProduct, setSearchProduct] = useState("")
-      const { cart } = useContext(CartContext); 
+    const { cart } = useContext(CartContext); 
 
    
     return (
