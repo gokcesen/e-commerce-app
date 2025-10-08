@@ -10,6 +10,13 @@ function Header({ cartCount = 0, onSearch, onCategorySelect }){
     const [isCartOpen, setIsCartOpen] = useState(false);
     const { cart } = useContext(CartContext);
     const navigate = useNavigate();
+
+    const navLinks = [
+        { label: "Home", to: "/" },
+        { label: "About", to: "/about" },
+        { label: "Products", to: "/products" },
+        { label: "Cart", to: "/cart" }
+      ];
    
     const handleChange = (event) =>
     {
@@ -32,6 +39,17 @@ function Header({ cartCount = 0, onSearch, onCategorySelect }){
         <nav className="fixed top-0 left-0 w-full bg-slate-900 text-white px-8 py-5 rounded-md z-50">
             <div className="max-w-7xl mx-auto flex items-center justify-between">
                 <h1 onClick={() => navigate("/")} className="text-2xl font-bold">Quick Store</h1>
+                <ul className="flex space-x-6 list-none p-0 m-0">
+                    {navLinks.map(link => (
+                        <li
+                        key={link.to}
+                        className="cursor-pointer hover:underline"
+                        onClick={() => navigate(link.to)}
+                        >
+                        {link.label}
+                        </li>
+                    ))}
+                </ul>
                 <select value={selectedCategory} onChange={handleFilterChange}>
                     <option value="">All Categories</option>
                     <option value="beauty">Beauty</option>

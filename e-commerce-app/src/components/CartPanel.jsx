@@ -6,7 +6,7 @@ const CartPanel = ({ onClose }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="fixed top-16 right-0 h-full w-80 bg-white shadow-lg p-6">
+    <div className="fixed top-16 right-0 h-[calc(100vh-4rem)] w-80 bg-white shadow-lg p-6 overflow-y-auto">
       <Cart />
       <button
         onClick={onClose}

@@ -56,7 +56,9 @@ const handleClick = (product) => {
               </p>
             </div>
             <button
-              onClick={() => removeFromCart(item.id)}
+              onClick={(e) =>{ 
+                e.stopPropagation();
+                removeFromCart(item.id)}}
               className="ml-4 px-3 py-1 bg-gray-500 text-white rounded hover:bg-red-600"
             >
               <FaTrash className="mr-0.5" />

@@ -4,7 +4,8 @@ import HomePage from './pages/HomePage';
 import { CartProvider } from './context/CartProvider';
 import { ProductProvider } from './context/ProductProvider';
 import CartPage from './pages/CartPage';
-import ProductPage from './pages/ProductPage'
+import ProductPage from './pages/ProductPage';
+import ProductsPage from './pages/ProductsPage';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Router>
           <Routes>
               <Route path="/" element={<HomePage />} />
+              <Route path="/products" element={<ProductsPage />} />
               <Route path="/product/:id" element={<ProductPage />} />
               <Route path="/cart" element={<CartPage />} />
           </Routes>
