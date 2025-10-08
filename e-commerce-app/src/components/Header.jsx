@@ -33,7 +33,7 @@ function Header({ cartCount = 0, onSearch, onCategorySelect }){
             <div className="max-w-7xl mx-auto flex items-center justify-between">
                 <h1 onClick={() => navigate("/")} className="text-2xl font-bold">Quick Store</h1>
                 <select value={selectedCategory} onChange={handleFilterChange}>
-                    <option value="all">All Categories</option>
+                    <option value="">All Categories</option>
                     <option value="beauty">Beauty</option>
                     <option value="fragrances">Fragrances</option>
                     <option value="furniture">Furniture</option>

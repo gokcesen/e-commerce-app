@@ -2,13 +2,20 @@ import { useContext } from "react";
 import { FaTrash } from "react-icons/fa";
 import { CartContext } from "../context/CartContext";
 import QuantityCounter from "./QuantityCounter";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { cart, removeFromCart, updateQuantity } = useContext(CartContext);
+const { cart, removeFromCart, updateQuantity } = useContext(CartContext);
+const navigate = useNavigate();
+
+const handleClick = (product) => {
+    navigate( `/product/${product.id}`, {state: { product }});     
+};
 
   if (cart.length === 0) {
     return <p className="text-black">Your cart is empty</p>;
   }
+  console.log(cart)
 
   return (
     <>
@@ -17,7 +24,9 @@ const Cart = () => {
         <p className="text-black">Your cart is empty</p>
       ) : (
         cart.map(item => (
-          <div key={item.id} className="flex items-center mb-5 border-b pb-3">
+          <div key={item.id} 
+          className="flex items-center mb-5 border-b pb-3"
+          onClick={() => handleClick(item)} >
             <img
               src={item.images[0]}
               alt={item.title}
@@ -28,14 +37,18 @@ const Cart = () => {
               <div className="mt-1 flex justify-center">
                 <QuantityCounter
                   quantity={item.quantity}
-                  onIncrement={() =>
+                  onIncrement={(e) => {
+                    e.stopPropagation();
                     updateQuantity(item.id, item.quantity + 1)
-                  }
-                  onDecrement={() =>
-                    item.quantity > 1
-                      ? updateQuantity(item.id, item.quantity - 1)
-                      : removeFromCart(item.id)
-                  }
+                  }}
+                  onDecrement={(e) => {
+                    e.stopPropagation();
+                    if (item.quantity > 1) {
+                      updateQuantity(item.id, item.quantity - 1);
+                    } else {
+                      removeFromCart(item.id);
+                    }
+                  }}
                 />
               </div>
               <p className="text-green-600 font-semibold">
@@ -48,7 +61,7 @@ const Cart = () => {
             >
               <FaTrash className="mr-0.5" />
             </button>
-          </div>
+        </div>
         ))
       )}
     

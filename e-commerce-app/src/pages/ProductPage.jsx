@@ -11,6 +11,7 @@ const ProductPage = () => {
     const { id } = useParams();
     const { products } = useContext(ProductContext)
     const [searchProduct, setSearchProduct] = useState("")
+    const [selectedCategory, setSelectedCategory] = useState("");
     const { cart } = useContext(CartContext); 
 
     const product = products.find(p => p.id === Number(id));
@@ -23,8 +24,9 @@ const ProductPage = () => {
                 cartCount={cart.reduce((total, item) => total + item.quantity, 0)}
                 cartItems={cart}
                 onSearch={setSearchProduct}
+                onCategorySelect={setSelectedCategory}
             />
-            <ProductDetails product={product}/>
+            <ProductDetails product={product} />
         </>
     );
 }
