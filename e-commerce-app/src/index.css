@@ -9,10 +9,9 @@
   font-family: system-ui, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light;
+  color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #f9f5f0e8;
+  background-color: #f9f5f0ee;
   --color-cream: #f9f5f0;
   --color-dark-cream: #f9f5f0e8;
 
@@ -20,6 +19,9 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+input {
+  color-scheme: light;
 }
 
 a {

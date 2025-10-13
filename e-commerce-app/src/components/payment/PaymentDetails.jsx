@@ -1,37 +1,42 @@
 import { useState } from "react";
+import { FaCreditCard } from "react-icons/fa";
+import { SiGooglepay, SiApplepay, SiPaypal } from "react-icons/si";
+import CreditCardForm from "../forms/CreditCardForm";
+
+
 
 const PaymentDetails = () => {
     const paymentMethods = [
         {
           id: "credit-card",
           label: "Credit Card",
-          logo: "https://cdn-icons-png.flaticon.com/512/196/196578.png",
+          icon: <FaCreditCard  size={28} className="text-gray-600" />,
         },
         {
           id: "paypal",
           label: "PayPal",
-          logo: "https://cdn-icons-png.flaticon.com/512/174/174861.png",
+          icon: <SiPaypal size={28}  className="text-gray-600"/>,
         },
         {
           id: "apple-pay",
           label: "Apple Pay",
-          logo: "https://cdn-icons-png.flaticon.com/512/179/179309.png",
+          icon: <SiApplepay  size={28} className="text-gray-600" />,
         },
         {
           id: "google-pay",
           label: "Google Pay",
-          logo: "https://images.seeklogo.com/logo-png/32/2/google-pay-logo-png_seeklogo-324563.png"      },
+          icon: <SiGooglepay  size={28}   className="text-gray-600"/> },
       ];
 
     const [selectedMethod, setSelectedMethod] = useState("credit-card");
 
     return(
         <>
-            <div className="space-y-4">
+            <div className="space-y-1">
                 {paymentMethods.map((method) => (
                     <label
                     key={method.id}
-                    className={`flex items-center justify-between border rounded-lg p-4 cursor-pointer transition
+                    className={`flex items-center justify-between gap-x-20 border rounded-lg p-4 cursor-pointer transition max-w-[600px]
                         ${
                         selectedMethod === method.id
                             ? "border-blue-600 bg-blue-50"
@@ -39,7 +44,7 @@ const PaymentDetails = () => {
                         }`}
                     >
                     <div className="flex items-center space-x-4">
-                        <img src={method.logo} alt={method.label} className="w-10 h-10" />
+                        {method.icon}
                         <span className="font-medium text-gray-800">{method.label}</span>
                     </div>
                     <input
@@ -49,11 +54,34 @@ const PaymentDetails = () => {
                         checked={selectedMethod === method.id}
                         onChange={() => setSelectedMethod(method.id)}
                         className="w-4 h-4 accent-blue-600 bg-white"
-                        //"h-5 w-5 accent-blue-600 appearance-none rounded-full border-2 border-gray-400 checked:border-blue-600 checked:bg-white transition"
                     />
                     </label>
                 ))}
             </div>
+
+            {selectedMethod === "credit-card" && (
+                <div className="mt-8 border rounded max-w-[600px]">
+                    <CreditCardForm />
+                </div>
+                )}
+
+                {selectedMethod === "paypal" && (
+                <div className="mt-4 p-4 border rounded max-w-[600px]">
+                    <p>You will be redirected to PayPal to complete the payment.</p>
+                </div>
+                )}
+
+                {selectedMethod === "apple-pay" && (
+                <div className="mt-4 p-4 border rounded max-w-[600px]">
+                    <p>Use Apple Pay on your device to pay securely.</p>
+                </div>
+                )}
+
+                {selectedMethod === "google-pay" && (
+                <div className="mt-4 p-4 border rounded max-w-[600px]">
+                    <p>Use Google Pay to complete your purchase easily.</p>
+                </div>
+            )}
         </>
     );
 }
