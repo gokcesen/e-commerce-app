@@ -26,23 +26,25 @@ function ProductCard({ product, onClick }) {
 
     return(
         <>
-            <div onClick={onClick} className="card border-1 box-shadow-5 bg-white shadow-md rounded-lg overflow-hidden w-72">
+            <div onClick={onClick} className="card border-1 box-shadow-5 bg-cream shadow-md rounded-lg overflow-hidden w-72 flex flex-col">
                 <img
                     src={product.images[0]}
                     alt={product.title}
                     className="w-full h-48 object-cover"
                 />
-                <div className="p-4">
+                <div className="p-4 flex flex-col flex-grow">
                     <h2 className="card-title text-xl font-semibold text-gray-800 mb-2">
                         {product.title}
                     </h2>
-                    <p className="card-text text-gray-600 text-sm mb-4">
-                    {product.description}
+                    <p className="card-text text-gray-600 text-sm text-left mb-4 flex-grow">
+                        {product.description.length > 100 
+                         ? product.description.slice(0, 100) + '...' 
+                         : product.description}
                     </p>
                    <span className="text-lg font-bold text-green-600 block mb-3">
                         ${product.price}
                     </span>
-                    <div className="w-full flex justify-center">
+                    <div className="w-full flex justify-center mt-auto">
                       {count === 0 ? (
                         <button
                             onClick={handleAddToCart}

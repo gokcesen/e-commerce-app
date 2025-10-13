@@ -2,7 +2,13 @@
 export default {
   content: ["./src/**/*.{html,jsx}"],
   theme: {
-    extend: {},
+    extend: {colors: {
+      cream: '#fcfcfbff',
+    },
+    fontFamily: {
+      sans: ['Inter', 'sans-serif'],
+    },
+  },
   },
   plugins: [],
 }

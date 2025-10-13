@@ -1,6 +1,8 @@
 import QuantityCounter from "./QuantityCounter";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import AccordionPanel from "./DisclosureItem";
+import DisclosureItem from "./DisclosureItem";
 
 
 const ProductDetails = ({ product }) => {
@@ -22,12 +24,12 @@ const ProductDetails = ({ product }) => {
                 </div>
                 <div className="flex flex-col justify-start mt-12">
                     <div>
-                        <h1 className="text-4xl text-gray-800 font-bold border-b border-gray-400 mb-4 pb-4">{product.title}</h1>
-                        <p className="text-left text-gray-700 leading-relaxed text-base mb-4 pb-6">
+                        <h1 className="text-3xl text-gray-800 text-left font-bold border-b border-gray-400 mb-4 pb-4 font-sans">{product.title}</h1>
+                        <p className="text-left text-gray-700 leading-relaxed text-base mb-4 pb-6 font-sans">
                         {product.description}
                         </p>
                         <div className="flex items-center justify-start gap-x-64">
-                            <p className="text-3xl font-semibold text-orange-600">
+                            <p className="text-2xl font-semibold text-orange-600 font-sans">
                                 ${product.price}
                             </p>
                             <QuantityCounter
@@ -43,6 +45,15 @@ const ProductDetails = ({ product }) => {
                                     : removeFromCart(cartItem?.id)
                                 }
                             />
+                        </div>
+                        <div className="max-w-md mx-auto mt-10 rounded-sm overflow-hidden">
+                            <DisclosureItem title="Product Details">
+                                <p>Brand: {product.brand}</p>
+                            </DisclosureItem>
+                            <DisclosureItem title="Size" isLast={true}>
+                                <p>Size: {product.dimensions.width} x {product.dimensions.height} x {product.dimensions.depth}</p>
+                                <p>Weight: {product.weight} g</p>
+                            </DisclosureItem>
                         </div>
                     </div>
                 </div>
