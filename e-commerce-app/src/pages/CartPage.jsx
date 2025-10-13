@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-import Cart from "../components/Cart";
+import Cart from "../components/cart/Cart";
 import { useState, useContext } from "react";
 import { CartContext } from "../context/CartContext";
 

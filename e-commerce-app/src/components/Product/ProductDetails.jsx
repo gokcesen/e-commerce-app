@@ -1,16 +1,22 @@
 import QuantityCounter from "../utilities/QuantityCounter";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
-import AccordionPanel from "../utilities/DisclosureItem";
 import DisclosureItem from "../utilities/DisclosureItem";
+import StarRating from "../utilities/StarRating";
 
 
 const ProductDetails = ({ product }) => {
     const { cart, addToCart, removeFromCart, updateQuantity } = useContext(CartContext);
 
     const cartItem = cart.find(item => item.id === product.id);
-    console.log(cartItem)
+    const count = cartItem ? cartItem.quantity : 0;
+
     if (!product) return <p className="text-red-500">Product not found.</p>;
+
+    const handleAddToCart = (e) => {
+        e.stopPropagation(); 
+        addToCart(product);
+      };
 
     return(
         <>
@@ -28,25 +34,37 @@ const ProductDetails = ({ product }) => {
                         <p className="text-left text-gray-700 leading-relaxed text-base mb-4 pb-6 font-sans">
                         {product.description}
                         </p>
-                        <div className="flex items-center justify-start gap-x-64">
+                        <div className="mt-0.5 mb-4">
+                            <StarRating rating={product.rating} />
+                        </div>
+                        <div className="flex items-center justify-start gap-x-60">
                             <p className="text-2xl font-semibold text-orange-600 font-sans">
                                 ${product.price}
                             </p>
-                            <QuantityCounter
-                                quantity={cartItem ? cartItem.quantity : 1}
-                                onIncrement={() =>
-                                    cartItem
-                                    ? updateQuantity(cartItem.id, cartItem.quantity + 1)
-                                    : addToCart(product)
-                                }
-                                onDecrement={() =>
-                                    cartItem && cartItem.quantity > 1
-                                    ? updateQuantity(cartItem.id, cartItem.quantity - 1)
-                                    : removeFromCart(cartItem?.id)
-                                }
-                            />
+                            {count === 0 ? (
+                                <button
+                                    onClick={handleAddToCart}
+                                    className="bg-violet-500 hover:bg-violet-600 focus:outline-2 focus:outline-offset-2 focus:outline-violet-500 active:bg-violet-700"
+                                >
+                                    Add to Cart
+                                </button>
+                                ) : (
+                                <QuantityCounter
+                                    quantity={cartItem ? cartItem.quantity : 1}
+                                    onIncrement={() =>
+                                        cartItem
+                                        ? updateQuantity(cartItem.id, cartItem.quantity + 1)
+                                        : addToCart(product)
+                                    }
+                                    onDecrement={() =>
+                                        cartItem && cartItem.quantity > 1
+                                        ? updateQuantity(cartItem.id, cartItem.quantity - 1)
+                                        : removeFromCart(cartItem?.id)
+                                    }
+                                />
+                            )}
                         </div>
-                        <div className="max-w-md mx-auto mt-10 rounded-sm overflow-hidden">
+                        <div className="max-w-md mx-auto mt-28 rounded-sm overflow-hidden">
                             <DisclosureItem title="Product Details">
                                 <p>Brand: {product.brand}</p>
                             </DisclosureItem>
@@ -63,3 +81,4 @@ const ProductDetails = ({ product }) => {
 }
 
 export default ProductDetails;
+

@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { FaShoppingCart, FaTrash } from "react-icons/fa";
 import { CartContext } from "../context/CartContext";
-import CartPanel from "./CartPanel";
+import CartPanel from "./cart/CartPanel";
 import { useNavigate } from "react-router-dom";
 
 function Header({ cartCount = 0, onSearch, onCategorySelect }){

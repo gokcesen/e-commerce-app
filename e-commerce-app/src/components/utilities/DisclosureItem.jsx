@@ -4,10 +4,10 @@ function DisclosureItem({ title, children, isLast }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className={`border-t ${isLast ? 'border-b' : ''}`}>
+    <div className={`border-t bg-cream ${isLast ? 'border-b' : ''}`}>
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex justify-between items-center px-4 py-3 bg-white hover:bg-gray-50 transition
+        className="w-full flex justify-between items-center px-4 py-3 bg-cream hover:bg-gray-50 transition
         focus:outline-none focus:ring-0 rounded-none"
       >
         <span className="text-xs text-gray-900 font-medium font-sans">{title}</span>

@@ -12,6 +12,7 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #d8d3d3;
+  --color-cream: #f9f5f0;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-import ProductDetails from "../components/ProductDetails";
+import ProductDetails from "../components/product/ProductDetails";
 import { useParams } from 'react-router-dom';
 import { useState, useContext } from "react";
 import { ProductContext } from "../context/ProductContext";
