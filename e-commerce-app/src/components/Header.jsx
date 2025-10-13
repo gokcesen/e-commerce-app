@@ -36,38 +36,53 @@ function Header({ cartCount = 0, onSearch, onCategorySelect }){
 
     return(
     <>
-        <nav className="fixed top-0 left-0 w-full bg-slate-900 text-white px-8 py-5 rounded-md z-50">
-            <div className="max-w-7xl mx-auto flex items-center justify-between">
-                <h1 onClick={() => navigate("/")} className="text-2xl font-bold">Quick Store</h1>
-                <ul className="flex space-x-6 list-none p-0 m-0">
-                    {navLinks.map(link => (
-                        <li
-                        key={link.to}
-                        className="cursor-pointer hover:underline"
-                        onClick={() => navigate(link.to)}
-                        >
-                        {link.label}
-                        </li>
-                    ))}
-                </ul>
-                <select className="bg-gray-300 text-black" value={selectedCategory} onChange={handleFilterChange}>
-                    <option value="">All Categories</option>
-                    <option value="beauty">Beauty</option>
-                    <option value="fragrances">Fragrances</option>
-                    <option value="furniture">Furniture</option>
-                    <option value="groceries">Groceries</option>
-                </select>
-                <input
-                    type="text"
-                    value={search}
-                    onChange={handleChange}
-                    placeholder="Search..."
-                    className="ml-4 px-3 py-1 rounded-md text-black bg-gray-200 focus:outline-none"
-                />
-                <button onClick={toggleCart} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                <FaShoppingCart size={20} className="mr-2" />
-                    Cart ({cartCount})
-                </button>
+        <nav className="fixed top-0 left-0 w-full bg-slate-900 text-white py-3 gap-x-60">
+            <div className=" mx-8 flex items-center justify-between">
+                <div className="flex items-center justify-start space-x-8">
+                    <img
+                        src="https://www.iconpacks.net/icons/2/free-online-store-icon-2019-thumb.png"
+                        className="h-12 object-contain p-0 m-0"
+                    />
+                    <h1 onClick={() => navigate("/")} className="text-2xl font-bold font-sans">Quick Store</h1>
+                    <ul className="flex space-x-6 text-md list-none p-0 m-0 font-sans">
+                        {navLinks.map(link => (
+                            <li
+                            key={link.to}
+                            className="cursor-pointer hover:underline"
+                            onClick={() => navigate(link.to)}
+                            >
+                            {link.label}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                
+                <div className="flex items-center gap-x-16 ">
+                    <select 
+                        className="bg-white border border-gray-300 text-gray-700 text-sm font-sans rounded-md shadow-sm 
+                        focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
+                        px-4 py-2 transition duration-200 ease-in-out"
+                        value={selectedCategory} 
+                        onChange={handleFilterChange}
+                    >
+                        <option value="">All Categories</option>
+                        <option value="beauty">Beauty</option>
+                        <option value="fragrances">Fragrances</option>
+                        <option value="furniture">Furniture</option>
+                        <option value="groceries">Groceries</option>
+                    </select>
+                    <input
+                        type="text"
+                        value={search}
+                        onChange={handleChange}
+                        placeholder="Search..."
+                        className="ml-2 px-1 py-1 rounded-md text-black bg-gray-200 focus:outline-none"
+                    />
+                    <button onClick={toggleCart} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 font-sans">
+                    <FaShoppingCart size={20} className="mr-2 font-sans" />
+                        Cart ({cartCount})
+                    </button>
+                </div>
             </div>
         </nav>
         

@@ -20,8 +20,8 @@ const ProductDetails = ({ product }) => {
 
     return(
         <>
-            <div className="max-w-6xl mx-auto p-6 grid grid-cols-1 md:grid-cols-2 border border-gray-400 rounded shadow gap-10">
-                <div className="bg-gray-200">
+            <div className="max-w-6xl mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-20">
+                <div className="bg-gray-200 pl-4">
                     <img
                         src={product.images[0]}
                         alt={product.title}
@@ -37,10 +37,15 @@ const ProductDetails = ({ product }) => {
                         <div className="mt-0.5 mb-4">
                             <StarRating rating={product.rating} />
                         </div>
-                        <div className="flex items-center justify-start gap-x-60">
-                            <p className="text-2xl font-semibold text-orange-600 font-sans">
-                                ${product.price}
-                            </p>
+                        <div className="flex items-center justify-start gap-x-40">
+                            <div className="flex items-center justify-start gap-x-4">
+                                <span className="text-2xl font-semibold text-orange-600 font-sans">
+                                    ${product.price}
+                                </span>
+                                <span className="text-xs text-gray-500">
+                                    VAT included
+                                </span>
+                            </div>
                             {count === 0 ? (
                                 <button
                                     onClick={handleAddToCart}
