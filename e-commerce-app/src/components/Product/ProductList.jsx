@@ -37,7 +37,6 @@ function ProductList({ searchProduct="", selectedCategory="" }) {
           : true;
         return matchesSearch && matchesCategory;
       });
-        console.log(filteredProducts)
 
     return(
         <>

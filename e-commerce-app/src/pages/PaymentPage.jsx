@@ -1,18 +1,13 @@
-import Header from "../components/Header"
-import ProductList from "../components/Product/ProductList"
-import { useState, useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { useContext, useState } from "react";
+import Header from "../components/Header";
 
-
-
-
-function HomePage() {
+const PaymentPage = () => {
+    const { cart } = useContext(CartContext); 
     const [searchProduct, setSearchProduct] = useState("")
     const [selectedCategory, setSelectedCategory] = useState("");
-    const { cart } = useContext(CartContext); 
 
-   
-    return (
+    return(
         <>
             <Header  
                 cartCount={cart.reduce((total, item) => total + item.quantity, 0)}
@@ -20,10 +15,9 @@ function HomePage() {
                 onSearch={setSearchProduct}
                 onCategorySelect={setSelectedCategory}
             />
-
-            <ProductList searchProduct={searchProduct} selectedCategory={selectedCategory} />
         </>
-    )
+    );
+
 }
 
-export default HomePage
+export default PaymentPage;

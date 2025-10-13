@@ -12,20 +12,23 @@ const handleClick = (product) => {
     navigate( `/product/${product.id}`, {state: { product }});     
 };
 
-  if (cart.length === 0) {
-    return <p className="text-black">Your cart is empty</p>;
-  }
-  console.log(cart)
 
   return (
     <>
-      <h2 className="text-xl text-black border-b font-bold mb-6">Your Cart</h2>
+      <h2 className="text-2xl text-black border-b border-black font-bold mb-16">Your Cart</h2>
       {cart.length === 0 ? (
-        <p className="text-black">Your cart is empty</p>
+        <>
+          <p className="text-black">Your cart is empty</p>
+          <img
+            src="https://www.freeiconspng.com/thumbs/cart-icon/basket-cart-icon-27.png"
+            className="w-12 h-12 mx-auto my-4 block"
+            alt="Empty cart"
+          />
+        </>
       ) : (
         cart.map(item => (
           <div key={item.id} 
-          className="flex items-center mb-5 border-b pb-3"
+          className="flex items-center mb-5 border-b border-gray-400 pb-3"
           onClick={() => handleClick(item)} >
             <img
               src={item.images[0]}
@@ -66,6 +69,10 @@ const handleClick = (product) => {
         </div>
         ))
       )}
+      <button 
+        className="bg-sky-500 hover:bg-sky-700 ..."
+        onClick={() => navigate('/cart/payment')}>
+        Proceed to payment</button>
     
     </> 
   );

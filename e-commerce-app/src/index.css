@@ -11,8 +11,9 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #d8d3d3;
+  background-color: #f9f5f0e8;
   --color-cream: #f9f5f0;
+  --color-dark-cream: #f9f5f0e8;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

@@ -36,32 +36,37 @@ function Header({ cartCount = 0, onSearch, onCategorySelect }){
 
     return(
     <>
-        <nav className="fixed top-0 left-0 w-full bg-slate-900 text-white py-3 gap-x-60">
+        <nav className="fixed top-0 left-0 w-full bg-slate-900 text-white py-2 gap-x-60">
             <div className=" mx-8 flex items-center justify-between">
-                <div className="flex items-center justify-start space-x-8">
-                    <img
-                        src="https://www.iconpacks.net/icons/2/free-online-store-icon-2019-thumb.png"
-                        className="h-12 object-contain p-0 m-0"
-                    />
-                    <h1 onClick={() => navigate("/")} className="text-2xl font-bold font-sans">Quick Store</h1>
-                    <ul className="flex space-x-6 text-md list-none p-0 m-0 font-sans">
-                        {navLinks.map(link => (
-                            <li
-                            key={link.to}
-                            className="cursor-pointer hover:underline"
-                            onClick={() => navigate(link.to)}
-                            >
-                            {link.label}
-                            </li>
-                        ))}
-                    </ul>
+                <div className="flex items-center justify-start space-x-24">
+                    <div className="flex items-center gap-x-4">
+                        <img
+                            src="https://www.iconpacks.net/icons/2/free-online-store-icon-2019-thumb.png"
+                            className="h-12 object-contain p-0 m-0"
+                        />
+                        <h1 onClick={() => navigate("/")} className="text-2xl font-bold font-sans">Quick Store</h1>
+                    </div>
+                    <div className="flex items-center gap-x-4">
+                        <ul className="flex space-x-4 font-bold rounded-lg px-3 py-2 text-gray-700 hover:bg-gray-300 hover:text-gray-900 font-sans">
+
+                            {navLinks.map(link => (
+                                <li
+                                key={link.to}
+                                className="cursor-pointer hover:underline"
+                                onClick={() => navigate(link.to)}
+                                >
+                                {link.label}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
                 
-                <div className="flex items-center gap-x-16 ">
+                <div className="flex items-center gap-x-12 ">
                     <select 
-                        className="bg-white border border-gray-300 text-gray-700 text-sm font-sans rounded-md shadow-sm 
+                        className="bg-gray-200 border border-gray-300 text-gray-700 text-sm font-sans rounded-md shadow-sm 
                         focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
-                        px-4 py-2 transition duration-200 ease-in-out"
+                        px-8 py-2 transition duration-200 ease-in-out"
                         value={selectedCategory} 
                         onChange={handleFilterChange}
                     >
