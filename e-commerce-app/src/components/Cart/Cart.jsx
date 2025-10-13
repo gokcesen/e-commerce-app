@@ -71,7 +71,7 @@ const handleClick = (product) => {
       )}
       <button 
         className="bg-sky-500 hover:bg-sky-700 ..."
-        onClick={() => navigate('/cart/payment')}>
+        onClick={() => navigate('/checkout/payment')}>
         Proceed to payment</button>
     
     </> 

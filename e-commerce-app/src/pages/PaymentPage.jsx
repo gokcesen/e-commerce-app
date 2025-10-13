@@ -1,6 +1,7 @@
 import { CartContext } from "../context/CartContext";
 import { useContext, useState } from "react";
 import Header from "../components/Header";
+import PaymentDetails from "../components/payment/PaymentDetails";
 
 const PaymentPage = () => {
     const { cart } = useContext(CartContext); 
@@ -15,6 +16,7 @@ const PaymentPage = () => {
                 onSearch={setSearchProduct}
                 onCategorySelect={setSelectedCategory}
             />
+            <PaymentDetails />
         </>
     );
 
