@@ -1,8 +1,8 @@
-import QuantityCounter from "./QuantityCounter";
+import QuantityCounter from "../utilities/QuantityCounter";
 import { useContext } from "react";
-import { CartContext } from "../context/CartContext";
-import AccordionPanel from "./DisclosureItem";
-import DisclosureItem from "./DisclosureItem";
+import { CartContext } from "../../context/CartContext";
+import AccordionPanel from "../utilities/DisclosureItem";
+import DisclosureItem from "../utilities/DisclosureItem";
 
 
 const ProductDetails = ({ product }) => {

@@ -2,7 +2,7 @@ import ProductCard from "./ProductCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Spinner from "./Spinner";
+import Spinner from "../utilities/Spinner";
 
 
 function ProductList({ searchProduct="", selectedCategory="" }) {

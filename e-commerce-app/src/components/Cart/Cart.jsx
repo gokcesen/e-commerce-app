@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { FaTrash } from "react-icons/fa";
-import { CartContext } from "../context/CartContext";
-import QuantityCounter from "./QuantityCounter";
+import { CartContext } from "../../context/CartContext";
+import QuantityCounter from "../utilities/QuantityCounter";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
