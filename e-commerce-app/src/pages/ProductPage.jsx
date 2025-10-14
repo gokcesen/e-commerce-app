@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useContext } from "react";
 import { ProductContext } from "../context/ProductContext";
 import { CartContext } from "../context/CartContext";
+import Footer from "../components/Footer";
 
 
 
@@ -27,6 +28,8 @@ const ProductPage = () => {
                 onCategorySelect={setSelectedCategory}
             />
             <ProductDetails product={product} />
+
+            <Footer />
         </>
     );
 }

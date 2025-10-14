@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import { useState, useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import About from "../components/About";
+import Footer from "../components/Footer";
 
 function HomePage() {
     const [searchProduct, setSearchProduct] = useState("")
@@ -19,6 +20,8 @@ function HomePage() {
             />
 
             <About />
+
+            <Footer />
             
         </>
     );

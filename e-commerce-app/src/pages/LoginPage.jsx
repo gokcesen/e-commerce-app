@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import LoginForm from "../components/forms/LoginForm";
+import Footer from "../components/Footer";
 
 function LoginPage() {
     const { cart } = useContext(CartContext); 
@@ -16,6 +17,7 @@ function LoginPage() {
                 onCategorySelect=""
             />
             <LoginForm />
+            <Footer />
         </>
     );
 }

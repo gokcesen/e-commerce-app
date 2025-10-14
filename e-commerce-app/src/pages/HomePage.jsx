@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import ProductList from "../components/Product/ProductList";
 import { useState, useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import Footer from "../components/Footer";
 
 function HomePage() {
     const [searchProduct, setSearchProduct] = useState("")
@@ -17,8 +18,10 @@ function HomePage() {
                 onSearch={setSearchProduct}
                 onCategorySelect={setSelectedCategory}
             />
-
-            <ProductList searchProduct={searchProduct} selectedCategory={selectedCategory} isCartOpen={isCartOpen} />
+            <main className="pb-20"> 
+                <ProductList searchProduct={searchProduct} selectedCategory={selectedCategory} isCartOpen={isCartOpen} />
+            </main>
+            <Footer />
         </>
     );
 }

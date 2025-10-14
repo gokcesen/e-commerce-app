@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import Cart from "../components/cart/Cart";
 import { useState, useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import Footer from "../components/Footer";
 
 function CartPage() {
     const [searchProduct, setSearchProduct] = useState("")
@@ -19,6 +20,7 @@ function CartPage() {
             <div className="p-8 max-w-4xl mx-auto">
                 <Cart />
             </div>
+            <Footer />
         </>
     );
 }
