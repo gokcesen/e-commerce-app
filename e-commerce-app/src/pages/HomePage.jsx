@@ -1,10 +1,7 @@
-import Header from "../components/Header"
-import ProductList from "../components/Product/ProductList"
+import Header from "../components/Header";
+import ProductList from "../components/Product/ProductList";
 import { useState, useContext } from "react";
 import { CartContext } from "../context/CartContext";
-
-
-
 
 function HomePage() {
     const [searchProduct, setSearchProduct] = useState("")
@@ -23,7 +20,7 @@ function HomePage() {
 
             <ProductList searchProduct={searchProduct} selectedCategory={selectedCategory} />
         </>
-    )
+    );
 }
 
-export default HomePage
+export default HomePage;

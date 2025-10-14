@@ -7,6 +7,7 @@ import CartPage from './pages/CartPage';
 import ProductPage from './pages/ProductPage';
 import ProductsPage from './pages/ProductsPage';
 import PaymentPage from './pages/PaymentPage';
+import SignupPage from './pages/SignupPage';
 
 
 
@@ -23,6 +24,7 @@ function App() {
               <Route path="/product/:id" element={<ProductPage />} />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/checkout/payment" element={<PaymentPage />} />
+              <Route path="/signup" element={<SignupPage />}/>
           </Routes>
         </Router>
       </ProductProvider>
