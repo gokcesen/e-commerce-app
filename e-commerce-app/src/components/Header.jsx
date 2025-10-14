@@ -75,10 +75,10 @@ function Header({ cartCount = 0, onSearch, onCategorySelect }){
             </div>
             <div className="flex items-center justify-between ml-4">
                 <div className="flex items-center gap-x-8">
-                    <div classname="ml-"> 
+                    <div> 
                         <h1 onClick={() => navigate("/")} className="text-2xl font-bold font-sans">Quick Store</h1>
                     </div>
-                    <div className="ml-8">
+                    <div>
                         <select 
                             className="bg-gray-200 border border-gray-300 text-gray-700 text-sm font-sans rounded-md shadow-sm 
                             focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 

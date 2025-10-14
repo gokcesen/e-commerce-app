@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import LoginForm from "../components/forms/LoginForm";
 
 function LoginPage() {
     const { cart } = useContext(CartContext); 
@@ -14,7 +15,7 @@ function LoginPage() {
                 onSearch=""
                 onCategorySelect=""
             />
-
+            <LoginForm />
         </>
     );
 }
