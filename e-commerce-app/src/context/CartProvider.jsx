@@ -2,7 +2,8 @@ import { useState } from "react";
 import { CartContext } from "./CartContext";
 
 export function CartProvider({ children }){
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState([]);
+    const [isCartOpen, setIsCartOpen] = useState(false);
 
     const addToCart = (item) => {
         setCart((prev) => {
@@ -33,9 +34,11 @@ export function CartProvider({ children }){
         }
     };
 
+    const toggleCart = () => setIsCartOpen(prev => !prev);
+
 
     return(
-        <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity }}>
+        <CartContext.Provider value={{ cart, isCartOpen, addToCart, removeFromCart, updateQuantity, toggleCart, setIsCartOpen }}>
             {children}
         </CartContext.Provider>
     );
