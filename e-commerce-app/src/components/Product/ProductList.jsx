@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Spinner from "../utilities/Spinner";
 
 
-function ProductList({ searchProduct="", selectedCategory="" }) {
+function ProductList({ searchProduct="", selectedCategory="", isCartOpen }) {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const search = searchProduct?.toLowerCase() || "";
@@ -43,14 +43,20 @@ function ProductList({ searchProduct="", selectedCategory="" }) {
             {loading ? (
                 <Spinner />
             ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-40 gap-y-8 mt-6 max-w-7xl w-full place-items-center">
-                {filteredProducts.length > 0 ? (
-                    filteredProducts.map((product) => (
-                    <ProductCard
-                        key={product.id}
-                        product={product}
-                        onClick={() => handleClick(product)}
-                    />
+                <div
+                    className={`
+                        grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 
+                        ${isCartOpen ? "lg:grid-cols-3 max-w-4xl" : "lg:grid-cols-4 max-w-7xl"}
+                         mt-6 gap-x-40 gap-y-8 w-full place-items-center transition-all duration-300
+                    `}
+                    >
+                    {filteredProducts.length > 0 ? (
+                        filteredProducts.map((product) => (
+                        <ProductCard
+                            key={product.id}
+                            product={product}
+                            onClick={() => handleClick(product)}
+                        />
                     ))
                 ) : (
                     <p className="col-span-3 text-center text-gray-500">Product not found...</p>

@@ -6,7 +6,7 @@ import { CartContext } from "../context/CartContext";
 function HomePage() {
     const [searchProduct, setSearchProduct] = useState("")
     const [selectedCategory, setSelectedCategory] = useState("");
-    const { cart } = useContext(CartContext); 
+    const { cart, isCartOpen } = useContext(CartContext); 
 
    
     return (
@@ -18,7 +18,7 @@ function HomePage() {
                 onCategorySelect={setSelectedCategory}
             />
 
-            <ProductList searchProduct={searchProduct} selectedCategory={selectedCategory} />
+            <ProductList searchProduct={searchProduct} selectedCategory={selectedCategory} isCartOpen={isCartOpen} />
         </>
     );
 }
