@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import DisclosureItem from "../utilities/DisclosureItem";
 import StarRating from "../utilities/StarRating";
+import Breadcrumbs from "../utilities/BreadCrumbs";
 
 
 const ProductDetails = ({ product }) => {
@@ -20,6 +21,7 @@ const ProductDetails = ({ product }) => {
 
     return(
         <>
+        <Breadcrumbs product={product} />
             <div className="max-w-6xl mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-20">
                 <div className="bg-gray-200 pl-4">
                     <img

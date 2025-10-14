@@ -7,7 +7,7 @@ import Footer from "../components/Footer";
 
 
 
-function HomePage() {
+function ProductsPage() {
     const [searchProduct, setSearchProduct] = useState("")
     const [selectedCategory, setSelectedCategory] = useState("");
     const { cart, isCartOpen } = useContext(CartContext); 
@@ -30,4 +30,4 @@ function HomePage() {
     )
 }
 
-export default HomePage
+export default ProductsPage;

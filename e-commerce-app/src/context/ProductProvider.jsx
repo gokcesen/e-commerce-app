@@ -5,8 +5,7 @@ import { ProductContext } from "./ProductContext";
 export const ProductProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
-
-
+  
     useEffect(() => {
         const fetchProducts = async () => {
         try {
@@ -21,6 +20,8 @@ export const ProductProvider = ({ children }) => {
         };
         fetchProducts()
     }, []);
+
+   
 
     return (
         <ProductContext.Provider value={{ products, loading }}>

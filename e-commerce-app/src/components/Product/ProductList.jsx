@@ -1,14 +1,17 @@
 import ProductCard from "./ProductCard";
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Spinner from "../utilities/Spinner";
 import { ProductContext } from "../../context/ProductContext";
 
 
 function ProductList({ searchProduct="", selectedCategory="", isCartOpen }) {
     const search = searchProduct?.toLowerCase() || "";
-    const { products, loading } = useContext(ProductContext); 
+    const { loading, products } = useContext(ProductContext); 
     const navigate = useNavigate();
+    const location = useLocation();
+    const params = new URLSearchParams(location.search);
+    const categoryFromQuery = params.get("category")?.toLowerCase();
 
     const handleClick = (product) => {
         navigate( `/product/${product.id}`, {state: { product }});     
@@ -16,11 +19,16 @@ function ProductList({ searchProduct="", selectedCategory="", isCartOpen }) {
 
     const filteredProducts = products.filter((product) => {
         const matchesSearch = product.title.toLowerCase().includes(search);
-        const matchesCategory = selectedCategory
-          ? product.category.toLowerCase() === selectedCategory.toLocaleLowerCase()
-          : true;
+
+       const effectiveCategory = categoryFromQuery || selectedCategory;
+       const matchesCategory = effectiveCategory
+           ? product.category.toLowerCase() === effectiveCategory
+           : true;
+
         return matchesSearch && matchesCategory;
-      });
+    });
+
+   
 
     return(
         <>

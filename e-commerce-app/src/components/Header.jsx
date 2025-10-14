@@ -29,6 +29,7 @@ function Header({ cartCount = 0, onSearch, onCategorySelect }){
         const value = event.target.value;
         setSelectedCategory(value);
         navigate(value ? `/products?category=${value}` : "/products");
+        if (onCategorySelect) onCategorySelect(value);
     }
 
     return(
