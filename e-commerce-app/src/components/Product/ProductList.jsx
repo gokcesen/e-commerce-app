@@ -1,30 +1,14 @@
 import ProductCard from "./ProductCard";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../utilities/Spinner";
+import { ProductContext } from "../../context/ProductContext";
 
 
 function ProductList({ searchProduct="", selectedCategory="", isCartOpen }) {
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
     const search = searchProduct?.toLowerCase() || "";
+    const { products, loading } = useContext(ProductContext); 
     const navigate = useNavigate();
-
-    useEffect(() => {
-        const fetchProducts = async () => {
-        try {
-            const response = await axios.get("https://dummyjson.com/products");
-            setProducts(response.data.products)
-            if (!response.ok) throw new Error("Failed to load products");
-        } catch(error) {
-            console.error(error);
-        } finally {
-            setLoading(false);
-          }
-        };
-        fetchProducts()
-    }, []);
 
     const handleClick = (product) => {
         navigate( `/product/${product.id}`, {state: { product }});     
