@@ -36,19 +36,15 @@ function Header({ cartCount = 0, onSearch, onCategorySelect }){
 
     return(
     <>
-        <nav className="fixed top-0 left-0 w-full bg-slate-900 text-white py-2 gap-x-60">
-            <div className=" mx-8 flex items-center justify-between">
-                <div className="flex items-center justify-start space-x-24">
-                    <div className="flex items-center gap-x-4">
+        <nav className="fixed top-0 left-0 w-full bg-slate-900 text-white py-2">
+            <div className="mx-8 flex flex-col gap-2 ml-12">
+                <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-x-32">
                         <img
                             src="https://www.iconpacks.net/icons/2/free-online-store-icon-2019-thumb.png"
                             className="h-12 object-contain p-0 m-0"
                         />
-                        <h1 onClick={() => navigate("/")} className="text-2xl font-bold font-sans">Quick Store</h1>
-                    </div>
-                    <div className="flex items-center gap-x-4">
-                        <ul className="flex space-x-4 font-bold rounded-lg px-3 py-2 text-gray-700 hover:bg-gray-300 hover:text-gray-900 font-sans">
-
+                        <ul className="flex space-x-4 text-gray-200 font-semibold font-sans">
                             {navLinks.map(link => (
                                 <li
                                 key={link.to}
@@ -60,41 +56,61 @@ function Header({ cartCount = 0, onSearch, onCategorySelect }){
                             ))}
                         </ul>
                     </div>
-                </div>
-                
-                <div className="flex items-center gap-x-12 ">
-                    <select 
-                        className="bg-gray-200 border border-gray-300 text-gray-700 text-sm font-sans rounded-md shadow-sm 
-                        focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
-                        px-8 py-2 transition duration-200 ease-in-out"
-                        value={selectedCategory} 
-                        onChange={handleFilterChange}
-                    >
-                        <option value="">All Categories</option>
-                        <option value="beauty">Beauty</option>
-                        <option value="fragrances">Fragrances</option>
-                        <option value="furniture">Furniture</option>
-                        <option value="groceries">Groceries</option>
-                    </select>
-                    <input
-                        type="text"
-                        value={search}
-                        onChange={handleChange}
-                        placeholder="Search..."
-                        className="ml-2 px-1 py-1 rounded-md text-black bg-gray-200 focus:outline-none"
-                    />
-                    <button onClick={toggleCart} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 font-sans">
-                    <FaShoppingCart size={20} className="mr-2 font-sans" />
-                        Cart ({cartCount})
-                    </button>
+                    <div className="flex items-center gap-x-6">
+                        <button
+                            onClick={() => navigate("/login")}
+                            className="text-sm border border-white rounded-xl px-3 py-1 bg-slate-900 hover:bg-sky-700"
+                        >
+                            Login
+                        </button>
+
+                        <button
+                            onClick={() => navigate("/signup")}
+                            className="text-sm border border-white rounded-xl px-3 py-1 bg-slate-900 hover:bg-sky-700 transition"
+                        >
+                            Sign Up
+                        </button>
+                    </div>
                 </div>
             </div>
+            <div className="flex items-center justify-between ml-4">
+                <div className="flex items-center gap-x-8">
+                    <div classname="ml-"> 
+                        <h1 onClick={() => navigate("/")} className="text-2xl font-bold font-sans">Quick Store</h1>
+                    </div>
+                    <div className="ml-8">
+                        <select 
+                            className="bg-gray-200 border border-gray-300 text-gray-700 text-sm font-sans rounded-md shadow-sm 
+                            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
+                            px-4 py-1 transition duration-200 ease-in-out"
+                            value={selectedCategory} 
+                            onChange={handleFilterChange}
+                        >
+                            <option value="">All Categories</option>
+                            <option value="beauty">Beauty</option>
+                            <option value="fragrances">Fragrances</option>
+                            <option value="furniture">Furniture</option>
+                            <option value="groceries">Groceries</option>
+                        </select>
+                        <input
+                            type="text"
+                            value={search}
+                            onChange={handleChange}
+                            placeholder="Search..."
+                            className="ml-2 px-1 py-1 rounded-md text-black bg-gray-200 focus:outline-none"
+                        />
+                    </div>
+                </div>
+                <button 
+                    onClick={toggleCart} 
+                    className="text-sm bg-blue-700 hover:bg-blue-800 rounded-xl transition inline-flex items-center me-8 font-sans">
+                <FaShoppingCart size={20} className="mr-2 font-sans" />
+                    Cart ({cartCount})
+                </button>
+            </div>
         </nav>
-        
         {isCartOpen && <CartPanel cartItems={cart} onClose={() => setIsCartOpen(false)}/>}
-
         <div className="h-20"></div>
-
     </>
     );
 }
