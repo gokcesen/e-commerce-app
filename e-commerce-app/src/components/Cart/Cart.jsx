@@ -5,13 +5,16 @@ import QuantityCounter from "../utilities/QuantityCounter";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-const { cart, removeFromCart, updateQuantity } = useContext(CartContext);
-const navigate = useNavigate();
+  const { cart, removeFromCart, updateQuantity } = useContext(CartContext);
+  const navigate = useNavigate();
 
-const handleClick = (product) => {
-    navigate( `/product/${product.id}`, {state: { product }});     
-};
+  const handleClick = (product) => {
+      navigate( `/product/${product.id}`, {state: { product }});     
+  };
 
+  const totalPrice = cart.reduce((total, item) => {
+    return total + item.price * item.quantity;
+  }, 0);
 
   return (
     <>
@@ -28,8 +31,8 @@ const handleClick = (product) => {
       ) : (
         cart.map(item => (
           <div key={item.id} 
-          className="flex items-center mb-5 border-b border-gray-400 pb-3"
-          onClick={() => handleClick(item)} >
+            className="flex items-center mb-5 border-b border-gray-400 pb-3"
+            onClick={() => handleClick(item)} >
             <img
               src={item.images[0]}
               alt={item.title}
@@ -69,6 +72,11 @@ const handleClick = (product) => {
         </div>
         ))
       )}
+      <div className="text-right mt-6 border-t border-gray-400 pt-4">
+          <p className="text-lg font-semibold text-black">
+            Total: <span className="text-green-600">${totalPrice.toFixed(2)}</span>
+          </p>
+        </div>
       <button 
         className="bg-sky-500 hover:bg-sky-700 ..."
         onClick={() => navigate('/checkout/payment')}>

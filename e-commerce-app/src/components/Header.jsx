@@ -4,7 +4,7 @@ import { CartContext } from "../context/CartContext";
 import CartPanel from "./cart/CartPanel";
 import { useNavigate } from "react-router-dom";
 
-function Header({ cartCount = 0, onSearch, onCategorySelect }){
+const Header = ({ cartCount = 0, onSearch, onCategorySelect }) => {
     const [search, setSearch] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
     const { cart, isCartOpen, toggleCart, setIsCartOpen } = useContext(CartContext);
@@ -24,7 +24,6 @@ function Header({ cartCount = 0, onSearch, onCategorySelect }){
         if (onSearch) onSearch(value)
     }
 
-
     function handleFilterChange(event) {
         const value = event.target.value;
         setSelectedCategory(value);
@@ -37,10 +36,10 @@ function Header({ cartCount = 0, onSearch, onCategorySelect }){
         <nav className="fixed top-0 left-0 w-full bg-slate-900 text-white py-2 z-50">
             <div className="mx-8 flex flex-col gap-2 ml-12">
                 <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-x-32">
+                    <div className="flex items-center gap-x-28">
                         <img
                             src="https://www.iconpacks.net/icons/2/free-online-store-icon-2019-thumb.png"
-                            className="h-12 object-contain p-0 m-0"
+                            className="h-12 object-contain p-0 m-0 ml-4"
                         />
                         <ul className="flex space-x-4 text-gray-200 font-semibold font-sans">
                             {navLinks.map(link => (
@@ -61,7 +60,6 @@ function Header({ cartCount = 0, onSearch, onCategorySelect }){
                         >
                             Login
                         </button>
-
                         <button
                             onClick={() => navigate("/signup")}
                             className="text-sm border border-white rounded-xl px-3 py-1 bg-slate-900 hover:bg-sky-700 transition"
@@ -102,14 +100,14 @@ function Header({ cartCount = 0, onSearch, onCategorySelect }){
                 <button 
                     onClick={toggleCart} 
                     className="text-sm bg-blue-700 hover:bg-blue-800 rounded-xl transition inline-flex items-center me-8 font-sans">
-                <FaShoppingCart size={20} className="mr-2 font-sans" />
+                    <FaShoppingCart size={20} className="mr-2 font-sans" />
                     Cart ({cartCount})
                 </button>
             </div>
         </nav>
         {isCartOpen && <CartPanel cartItems={cart} onClose={() => setIsCartOpen(false)}/>}
         <div className="h-20"></div>
-    </>
+    </> 
     );
 }
 

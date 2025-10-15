@@ -6,7 +6,7 @@ const CartPanel = ({ onClose }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="fixed top-[104px] right-0 h-[calc(100vh-4rem)] w-80 bg-cream border-l-2 border-gray-400 shadow-lg p-6 overflow-y-auto">
+    <div className="fixed top-[104px] bottom-0 right-0 pb-32 w-80 bg-cream border-l-2 border-gray-400 shadow-lg p-6 overflow-y-auto z-50">
       <Cart />
       <div className="flex flex-col space-y-2">
         <button
@@ -22,7 +22,6 @@ const CartPanel = ({ onClose }) => {
           Go to Cart
         </button>
       </div>
-      
     </div>
   );
 };

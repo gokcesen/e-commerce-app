@@ -7,16 +7,15 @@ function Breadcrumbs({ product }) {
 
     const category = categoryFromURL || product?.category;
 
-
   return (
-    <nav className="text-sm text-gray-600 mb-4 font-sans">
-      <Link to="/" className="hover:underline">HomePage</Link>
+    <nav className="text-sm text-gray-600 mb-4 font-sans text-left px-0 ml-0">
+      <Link to="/" className="hover:underline text-black">HomePage</Link>
       {category && (
         <>
           {" > "}
           <Link 
             to={`/products?category=${category}`} 
-            className="hover:underline capitalize"
+            className="hover:underline capitalize text-black"
           >
             {category}
           </Link>
